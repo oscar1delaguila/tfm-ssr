@@ -77,8 +77,7 @@ export class ExperienciaFormComponent implements OnInit {
     
     //this.fechaPublicacion = new FormControl(new Date(),[ Validators.required ]);
 
-    this.loadTitulosJuguetesComprados();
-  
+     
     this.experienciaForm = this.formBuilder.group({
 
       titulo: this.titulo,
@@ -102,7 +101,7 @@ export class ExperienciaFormComponent implements OnInit {
 
         next:(experienciaAdminState:ExperienciaAdminState) => {
 
-          this.juguetesCompradosLista = experienciaAdminState.titulosAllJuguetes;
+            this.juguetesCompradosLista = experienciaAdminState.titulosAllJuguetes;
 
             this.experiencia = experienciaAdminState.experiencia;
             
@@ -129,6 +128,8 @@ export class ExperienciaFormComponent implements OnInit {
         }
 
       });
+
+      this.loadTitulosJuguetesComprados();
       
   }
 
