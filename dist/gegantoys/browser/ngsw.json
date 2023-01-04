@@ -1,0 +1,179 @@
+{
+  "configVersion": 1,
+  "timestamp": 1672827068049,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/123.56927dd464c50463.js",
+        "/141.9ca3fa76ed4893a7.js",
+        "/144.92da0d736502d745.js",
+        "/312.463e40d108719ea2.js",
+        "/392.7801f346bcbe6b2c.js",
+        "/404.de09d99d4080398c.js",
+        "/411.18f5dad0898a1daf.js",
+        "/493.7ea908a2c77a62a0.js",
+        "/529.5ae9ae078ff60abe.js",
+        "/540.d827943a4d12e226.js",
+        "/814.7b0a3f7bd23c93bb.js",
+        "/95.858cee5e8a6efe0b.js",
+        "/966.2656119532d16073.js",
+        "/common.ea6b73f29fba3241.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.e6ac15a62c04d4ad.js",
+        "/manifest.webmanifest",
+        "/polyfills.c85bf6e6835d4a08.js",
+        "/runtime.11f321b48601a90a.js",
+        "/scripts.fdb5b7cdad56d7c1.js",
+        "/styles.4fe230cad1f804ba.css"
+      ],
+      "patterns": [
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/bootstrap@5\\.3\\.0-alpha1\\/dist\\/css\\/bootstrap\\.min\\.css"
+      ]
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/categorias/accesorios-casa-munyecas.png",
+        "/assets/categorias/alimentos.png",
+        "/assets/categorias/baby-gd105429cc_640.png",
+        "/assets/categorias/bebes.png",
+        "/assets/categorias/casa-munyecas.png",
+        "/assets/categorias/centro-medico.png",
+        "/assets/categorias/cocinas.png",
+        "/assets/categorias/cocinero.png",
+        "/assets/categorias/herramientas.png",
+        "/assets/categorias/madera.png",
+        "/assets/categorias/maletines.png",
+        "/assets/categorias/mecanico.png",
+        "/assets/categorias/medico.png",
+        "/assets/categorias/munyecas-trapo.png",
+        "/assets/categorias/munyecas.png",
+        "/assets/categorias/ninyera.png",
+        "/assets/categorias/oficios.png",
+        "/assets/categorias/ollas.png",
+        "/assets/categorias/plastico.png",
+        "/assets/categorias/robots.png",
+        "/assets/categorias/taller-mecanico.png",
+        "/assets/css/animate.css",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/icons/logoOriginal.png",
+        "/assets/imagen-defecto/image-regular.svg",
+        "/assets/img-inicio/instrument-gd68269668_640.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "images-api",
+      "patterns": [
+        "https:\\/\\/gegantoys\\.com\\/backend\\/public\\/Juguetes\\/.*",
+        "https:\\/\\/gegantoys\\.com\\/backend\\/public\\/Experiencias\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 50,
+      "maxAge": 3600000,
+      "timeoutMs": 1000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/123.56927dd464c50463.js": "ad63678ad03e405a1df653f2cd8e49bd7e90c433",
+    "/141.9ca3fa76ed4893a7.js": "13d0f8d623efb854dc42d4f364ed0c70b490af46",
+    "/144.92da0d736502d745.js": "6e3ac4f038a4c9e5837dfde959f6540637b41d6e",
+    "/312.463e40d108719ea2.js": "b8c400d9f1a662cab3443f6706b691965ad3c41d",
+    "/392.7801f346bcbe6b2c.js": "d4a6f3635c797403303aa8aaa511b77ad4d84500",
+    "/404.de09d99d4080398c.js": "8f5dcb6205bd696e9fb570835c4e234fd361c241",
+    "/411.18f5dad0898a1daf.js": "81552fd0ce850d13cc68a6c7a9fe523bec0b3f9e",
+    "/493.7ea908a2c77a62a0.js": "e5eee522d9218f0561e3a4cd0b2a840c3db5d244",
+    "/529.5ae9ae078ff60abe.js": "8a76fcb47bfb18298d307a2ab292050a4b2cfb30",
+    "/540.d827943a4d12e226.js": "c5a29b63f8ec3effe2cce449f4e9edb7300f779b",
+    "/814.7b0a3f7bd23c93bb.js": "bd11e911993a669d31ad42f908134b3c3311f815",
+    "/95.858cee5e8a6efe0b.js": "1cedcde479dc7c508ea6bff47ca9e8fc6eed72b1",
+    "/966.2656119532d16073.js": "b1843bc1f7fd10629d35c19e5fbbfe7b0eabc21b",
+    "/assets/categorias/accesorios-casa-munyecas.png": "44becff81d41bfa8d64782c481c08e02ed5fe252",
+    "/assets/categorias/alimentos.png": "48a0612d738c822a02482cc35b42562201621cc9",
+    "/assets/categorias/baby-gd105429cc_640.png": "f1dcc00f11e846329dffd3c2901b21ae7e5de564",
+    "/assets/categorias/bebes.png": "2dc8639674ba72a6e5e0682b1e166b3baf21ea46",
+    "/assets/categorias/casa-munyecas.png": "c512141427f4623443644e387d9bb512e5f01740",
+    "/assets/categorias/centro-medico.png": "e1f0e3c1b3de363a0098b176a58033d80a564c90",
+    "/assets/categorias/cocinas.png": "1d2ae2c55ff611efd8f7229169879d4a655d4951",
+    "/assets/categorias/cocinero.png": "2331dd5ba7ddad27217acb5c15008e3eb5b42113",
+    "/assets/categorias/herramientas.png": "ed7382eabed1530e3e08222ec75e3116b5db765f",
+    "/assets/categorias/madera.png": "1474e30d800d987953ab94627119a94758c6fab4",
+    "/assets/categorias/maletines.png": "4b14f40ca72d3dae6240ebd5350ecba9912d6ae0",
+    "/assets/categorias/mecanico.png": "e269acc61bfbecbcfc44e1dfefcf87c471efb882",
+    "/assets/categorias/medico.png": "8e3be175cd52fa2e9db21c2c217e456b6e741e14",
+    "/assets/categorias/munyecas-trapo.png": "1948ae3e0271bcf2dec0a7e8308f9eb32ba613cf",
+    "/assets/categorias/munyecas.png": "12f7efbc8cf04f9c80a9ce8fd3d6d585e293211b",
+    "/assets/categorias/ninyera.png": "6afd0e7375367f4ba283fb332f27648ffaaa67de",
+    "/assets/categorias/oficios.png": "bc1b5701e34d48d541553206b8b0a99726cc4e12",
+    "/assets/categorias/ollas.png": "cb9586e5ca88916cbd9e02a03a3966fa95cce344",
+    "/assets/categorias/plastico.png": "f0ee183a174bb0a0ae2ccb94f1136351f8f54df7",
+    "/assets/categorias/robots.png": "45d02d10fea3d3d10cc6cdeb2bc61c0be1e92271",
+    "/assets/categorias/taller-mecanico.png": "e59addffe4d9e162254d61626ce87575d870be09",
+    "/assets/css/animate.css": "2c6d1c4851293ff192e130af02787fbebca0c5a6",
+    "/assets/icons/icon-128x128.png": "990d2a0f726808dfd72f6bf4a158d74ed9dfd46d",
+    "/assets/icons/icon-144x144.png": "cc3c008aaa198e76cd356bcc67351f114adb9b25",
+    "/assets/icons/icon-152x152.png": "6830fbf5a60d1445a94c895886b6cdd2aace2eac",
+    "/assets/icons/icon-192x192.png": "ba7cbbf5508f05c02da8644cc8d4c498790f6e65",
+    "/assets/icons/icon-384x384.png": "26154cf45ac006ebcf0cee66fb152e487063e3c2",
+    "/assets/icons/icon-512x512.png": "08ceb219738421e31898b095642d4972c236b1b0",
+    "/assets/icons/icon-72x72.png": "562d75376a16fd12cdc312bc4b6a8a602ebcf4b3",
+    "/assets/icons/icon-96x96.png": "7e5f796f99158098a650d3c4dfe141f911202c01",
+    "/assets/icons/logoOriginal.png": "807aec5ab2b4aec285a71d316975e877540881b2",
+    "/assets/imagen-defecto/image-regular.svg": "d6fb1881f646a331c27548745a6d38dd6447bd6b",
+    "/assets/img-inicio/instrument-gd68269668_640.jpg": "12e3f91b07db1b290dc8893edabaec7697fad32b",
+    "/common.ea6b73f29fba3241.js": "0b4639044c77ba53231c1a22cfee4e151099d99b",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "90a10c54781bfba2543a5b71615b9c5895b9e9e3",
+    "/main.e6ac15a62c04d4ad.js": "c69513633335ae9298ea2d43e732d9660ee4c775",
+    "/manifest.webmanifest": "ef56bc18120588325963a2e87097236dad5cb10b",
+    "/polyfills.c85bf6e6835d4a08.js": "f80244066710f13f03ced656386d69b4ee8c910e",
+    "/runtime.11f321b48601a90a.js": "c55c2f08342568fa01e252362e209691be3d0442",
+    "/scripts.fdb5b7cdad56d7c1.js": "b7f17128b823a73cd92f4d53f7dfd64b17ec8631",
+    "/styles.4fe230cad1f804ba.css": "5dcdc8ca028f58d3e0c3cfa0e2aff8a3e8654222"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
