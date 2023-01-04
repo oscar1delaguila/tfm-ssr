@@ -1,0 +1,68 @@
+
+
+.error {
+  color: red;
+}
+
+
+.triangle {
+
+  width: 0;
+  height: 0;
+  border-left: 40vw solid transparent;
+  border-right: 40vw solid transparent;
+  border-bottom: 80vw solid #FD9727;
+  position: absolute;
+  opacity: 0.57;
+  z-index: -10;
+  left: 10vw;
+  top:25vh;
+
+}
+
+.circle {
+  opacity: 0.7;
+  width: 75vw;
+  height: 75vw;
+  border-radius: 100%;
+  background-color: orange;
+  position: absolute;
+  left:5vw;
+  z-index: -10;
+  
+}
+
+
+
+@media only screen and (min-width: 600px) { 
+  
+  .triangle {
+
+    width: 0;
+    height: 0;
+    border-left: 18vw solid transparent;
+    border-right: 18vw solid transparent;
+    border-bottom: 36vw solid #FD9727;
+    position: absolute;
+    opacity: 0.57;
+    z-index: -10;
+    left: 30vw;
+    top:18vh;
+
+  }
+
+  .circle {
+    opacity: 0.7;
+    width: 35vw;
+    height: 35vw;
+    border-radius: 100%;
+    background-color: orange;
+    position: absolute;
+    left:13vw;
+    z-index: -10;
+    
+  }
+
+}
+
+

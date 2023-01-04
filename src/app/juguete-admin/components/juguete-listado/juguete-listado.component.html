@@ -1,0 +1,50 @@
+
+
+<div *ngIf="!loaded" class="w-screen h-screen">
+    <mat-spinner class="mx-auto top:32 sm:top-96"></mat-spinner>
+</div>
+
+
+<div *ngIf="loaded" class="contenedor-pagina-peq">
+    
+    <div class="titulo-pagina">Administración juguete</div>
+
+    <div class="">
+        <button type="button" class="btn btn-success boton-crear" (click)="crearJuguete()">Crear juguete</button> 
+    </div>
+    <div *ngIf="juguetes">
+        <div *ngFor="let juguete of juguetes; index as i;" class=" py-3 2xl:py-6" > 
+
+            <!-- contenedor item -->
+            <div class="contenedor-item ">
+                <div class="w-1/2 sm:w-1/3 h-64 xl:h-80 border-solid border-silver border ">
+                    <img *ngIf="juguete.imagen1" [src]="trustedUrl[i]" class="imagen-contenedor-item">
+                    <img *ngIf="!juguete.imagen1" [src]="juguete.imagen1 | mostrarImagenDefecto" class="imagen-contenedor-item imagen-vacia">
+                </div>    
+                <div class="w-1/2  sm:w-2/3 h-64 xl:h-80 px-2 p-3">
+                    <div class="text-left text-xs sm:text-base text-red-dark mb-1">{{ juguete.titulo }}</div>
+                    <div class="text-left text-sm sm:text-lg 2xl:text-2xl text-red-dark font-sans font-thin" >{{ juguete.marca }} - {{juguete.material}} - {{juguete.edad}}+</div>
+                    <div class="text-left pt-2 text-xs">Publicado: {{ juguete.fecha_publicacion | formatDate : 3  }}</div>
+                </div>
+            </div>
+
+            <!-- botones -->
+            <div class="mx-auto flex justify-between">
+                <div *ngIf="juguete.id" class="justify-self-start">
+                    <button type="button" class="btn btn-warning boton-editar mr-3" (click)="editar(juguete.id)">Editar juguete</button> 
+                    <button type="button" class="btn btn-danger boton-eliminar" (click)="eliminar(juguete.id)">Eliminar juguete</button>
+                </div>
+                <div class="justify-self-end mt-2 mb-5 text-lg mr-10" (click)="publicarJuguete(juguete.id, juguete.publicado)">
+                        <input *ngIf="juguete.publicado" id="checkboxJugueteP{{juguete.id}}" type="checkbox" class="input-checkbox" 
+                               checked
+                        >
+                        <input *ngIf="!juguete.publicado" id="checkboxJugueteNP{{juguete.id}}" type="checkbox" class="input-checkbox" 
+                        >
+                        <label for="revisadoPublicado" class="align-middle text-xs sm:text-xl " >Publicado</label>
+               </div>
+            </div>
+        </div>
+
+        <div class="p-4 w-fit mx-auto" (click)="loadJuguetes()" ><a class="btn boton-cargar-mas" >Cargar más</a></div>
+    </div>
+</div>

@@ -1,0 +1,268 @@
+<div *ngIf="!loaded" class="w-screen h-screen">
+    <mat-spinner class="mx-auto top:32 sm:top-96"></mat-spinner>
+</div>
+
+
+<div *ngIf="loaded" class="contenedor-pagina-peq">
+    
+    <div class="titulo-pagina">Características y Detalles</div>
+    
+    <div *ngIf="juguete" class="">
+
+        <div class="mb-5 ">    
+            <div class="mx-auto">
+                <div class="flex justify-between py-10 ">
+                    <div class=""><a class="btn btn-outline-danger " routerLink="/juguetes/{{jugueteId}}" >Volver</a></div>
+                    <div class=""><a class="btn boton-misc-rojo" href="https://amazon.es">Ir a Amazon </a></div>
+                </div>
+        
+                <div class="flex justify-start items-center py-10">
+
+                    <div *ngIf="isFavorito" (click)="eliminarDeFavoritos()" >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill mx-auto w-6 h-6 sm:w-10 sm:h-10 text-naranja-oscuro" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>   
+                    </div> 
+
+                    <div *ngIf="!isFavorito" (click)="anyadirAFavoritos(juguete.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star mx-auto w-6 h-6 sm:w-10 sm:h-10 text-naranja-oscuro" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                    </div>
+
+                    <div class="px-3 text-base sm:text-2xl text-left" >{{ juguete.titulo }}</div>
+                </div>   
+            </div>
+
+            <!-- fotos y video -->
+            <div class=" flex flex-wrap space-between items-start "> 
+                <mat-tab-group mat-align-tabs="center" class=" w-full xl:w-1/2 h-1/2 pr-4" >
+                    
+                    <!-- Fotos -->
+                    <mat-tab label="Fotos"   >
+                        <div class="card rounded-none w-full" >
+                            
+                            <div id="carouselExampleFade"  class="carousel slide " data-bs-ride="carousel">
+
+                                <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img *ngIf="juguete.imagen1" [src]="trustedUrl1 " class="card-img-top rounded-none block w-full h-380 sm:h-600 xl:h-450 ">
+                                            <img *ngIf="!juguete.imagen1" [src]="juguete.imagen1 | mostrarImagenDefecto " class="block w-full h-380 sm:h-600 xl:h-450 imagen-vacia">
+                                        </div>
+                                        <div *ngIf="juguete.imagen2 " class="carousel-item">
+                                            <img [src]="trustedUrl2" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 ">
+                                        </div>
+                                        <div *ngIf="juguete.imagen3" class="carousel-item">
+                                            <img [src]="trustedUrl3" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 ">
+                                        </div>
+                                        <div  *ngIf="juguete.imagen4" class="carousel-item">
+                                            <img [src]="trustedUrl4" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 " >
+                                        </div>
+                                        <div  *ngIf="juguete.imagen5" class="carousel-item">
+                                            <img [src]="trustedUrl5" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 ">
+                                        </div>
+                                        <div  *ngIf="juguete.imagen6" class="carousel-item">
+                                            <img [src]="trustedUrl6" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 ">
+                                        </div>
+                                        <div *ngIf="juguete.imagen7" class="carousel-item">
+                                            <img [src]="trustedUrl7" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 ">
+                                        </div>
+                                        <div *ngIf="juguete.imagen8" class="carousel-item">
+                                            <img [src]="trustedUrl8" class="card-img-top rounded-none block w-full  h-380 sm:h-600 xl:h-450 ">
+                                        </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon w-16 h-16" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon w-16 h-16" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                            
+                        <div class="py-3 text-center text-base xl:text-2xl text-naranja-oscuro">
+                            Valoración: <i> {{ juguete.puntuacion }}  ( {{juguete.num_votaciones}} Votaciones)</i>
+                        </div>
+                                            
+                    </mat-tab>
+
+                    <!-- videos -->
+                    <!--
+                    <mat-tab label="Video" >
+                        <div class="card rounded-none w-full"  >
+                            <div id="carouselFadeVideo"  class="carousel slide justify-center " data-bs-ride="carousel">
+
+                                <div class="carousel-inner ">
+                                        <div class="carousel-item active ">
+                                             <youtube-player videoId="{{juguete.path_video1}}" suggestedQuality="highres" [startSeconds]="1" ></youtube-player> 
+                                        </div>
+                                        <div *ngIf="juguete.path_video2 " class="carousel-item">
+                                            <youtube-player videoId="{{juguete.path_video2}}" suggestedQuality="highres" [startSeconds]="1" ></youtube-player>
+                                        </div>
+                                        <div *ngIf="juguete.path_video3" class="carousel-item">
+                                            <youtube-player videoId="{{juguete.path_video3}}" suggestedQuality="highres" [startSeconds]="1" ></youtube-player>
+                                        </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselFadeVideo" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon w-16 h-16" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next " type="button" data-bs-target="#carouselFadeVideo" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon w-16 h-16" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                                                       
+                        </div>                            
+                    </mat-tab>
+                    -->
+                </mat-tab-group>
+                <div class="w-full xl:w-1/2 p-4">
+                    <div class="font-size-resp text-red-dark ">Descripción:</div>   
+                    <div class="py-2">
+                        {{juguete.descripcion}}
+                    </div>
+                </div>
+        
+         </div>
+         <!-- en fotos y video -->
+
+
+        <div class="">
+
+            <div class="font-size-resp text-red-dark my-2 sm:my-4 2xl:my-8 text-center">Detalles:</div>   
+            <div class="flex flex-wrap border p-4">
+                <div class="w-full py-2">
+                    <p class="inline text-base">Edad: </p> <span class="text-xl"> {{ juguete.edad }}+</span>
+                </div>
+                <div class="w-full py-2 ">
+                    <p class="inline text-base">Marca: </p> <span class="text-xl"> {{ juguete.marca }}</span>
+                </div>
+                <div class="w-full py-2">
+                    <p class="inline text-base">Material: </p> <span class="text-xl"> {{ juguete.material }}</span>
+                </div>
+                <div class="w-full py-2 ">
+                    <p class="inline text-base">Medidas: </p>
+                        <span class="text-lg mx-2 nowrap inline">Ancho: {{ juguete.ancho }}cm</span>
+                        <span class="text-lg mx-2 inline">Largo: {{ juguete.largo }}cm</span>
+                        <span class="text-lg mx-2 inline">Alto: {{ juguete.alto }}cm</span>
+                </div>
+                <div  *ngIf="juguete.categoria" class="w-full py-2 ">
+                    <p class="inline text-base">Categoría: </p> <span class="text-lg inline"> {{ juguete.categoria.nombre_categoria }} - {{juguete.categoria.subcategoria1 }} - {{juguete.categoria.subcategoria2 }}</span>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <hr class="mx-auto w-1/4 my-12 border-2 border-purple">
+
+
+         <div class="border">
+            <div class="flex flex-wrap sm:flex-nowrap mx-auto sm:justify-between w-full">
+                <div class=" sm:w-1/2 px-5 py-4 2xl:px-32 2xl:py-10">
+                    <p class="text-2xl">PROs</p>
+                    <ul class="my-3 list-disc ">
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Es resistente al agua</span>
+                            <svg *ngIf="juguete.pro1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Desarrolla la motricidad</span>
+                            <svg *ngIf="juguete.pro2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Es de calidad</span>
+                            <svg *ngIf="juguete.pro3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Bonito a la vista</span>
+                            <svg *ngIf="juguete.pro4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Está bien construido</span>
+                            <svg *ngIf="juguete.pro5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Desarrolla la inteligencia de los niños</span>
+                            <svg *ngIf="juguete.pro6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+                <div class=" sm:w-1/2 px-5 py-4 2xl:px-32  2xl:py-10">
+                    <p class="text-left text-2xl">CONTRAs</p>
+                    <ul class="my-3 list-disc ">
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">No es divertido para los niños</span>
+                            <svg *ngIf="juguete.contra1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">No desarrolla inteligencia</span>
+                            <svg *ngIf="juguete.contra2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">No resiste el agua</span>
+                            <svg *ngIf="juguete.contra3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">No son materiales de calidad</span>
+                            <svg *ngIf="juguete.contra4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Tiene muchas piezas y se pueden perder</span>
+                            <svg *ngIf="juguete.contra5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                        <li class="py-4">
+                            <span class="align-middle text-lg mr-4">Es para niños grandes</span>
+                            <svg *ngIf="juguete.contra6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6 align-middle inline">
+                                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-left py-12 "><a class="btn btn-outline-danger" routerLink="/juguetes/{{jugueteId}}" >Volver</a></div>
+    
+    
+</div>
+
+  

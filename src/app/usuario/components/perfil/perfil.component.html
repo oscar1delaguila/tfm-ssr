@@ -1,0 +1,145 @@
+
+
+
+<div class="contenedor-pagina-peq">
+
+    <div class="titulo-pagina">Actualizar datos de tu perfil. </div>
+
+    <form *ngIf="perfilForm" [formGroup]="perfilForm" (ngSubmit)="actualizaPerfil()" >
+
+        <div class="my-10 sm:w-1/2 mx-auto text-left ">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label >Nombre:</mat-label>
+                <input matInput type="text" [formControl]="nombre" />
+                <mat-error>
+                    <div *ngIf="nombre.errors && nombre.touched" [ngClass]="'error'">
+                        <div *ngIf="nombre.errors.required">
+                            El nombre de pila es obligatorio.
+                        </div>
+                        <div *ngIf="nombre.errors.minlength">
+                            Password mínimo de 2 caracteres.
+                        </div>
+                        <div *ngIf="nombre.errors.maxlength">
+                            Password máximo 100 caracteres.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="my-10 sm:w-1/2 mx-auto text-left">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label >Apellidos:</mat-label>
+                <input matInput type="text" [formControl]="apellidos" />
+                <mat-error>
+                    <div *ngIf="apellidos.errors && apellidos.touched" [ngClass]="'error'">
+                        <div *ngIf="apellidos.errors.required">
+                            El campo Apellidos es obligatorio.
+                        </div>
+                        <div *ngIf="apellidos.errors.minlength">
+                            Apellidos mínimo de 2 caracteres.
+                        </div>
+                        <div *ngIf="apellidos.errors.maxlength">
+                            Apellidos máximo 100 caracteres.
+                        </div>
+
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="my-10 sm:w-1/2 mx-auto text-left">
+            <mat-form-field appearance="outline" class="w-full " >
+                <mat-label>Fecha nacimiento:</mat-label>
+                <input matInput type="date" [formControl]="fechaNacimiento" />
+                <mat-error>
+                    <div *ngIf="fechaNacimiento.errors && fechaNacimiento.touched" [ngClass]="'error'">
+                        <div *ngIf="fechaNacimiento.errors.required">
+                            La fecha de nacimiento es obligatorio.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+
+        <div class="my-10 sm:w-1/2 mx-auto text-left">
+            <mat-form-field appearance="outline" class="w-full ">
+                <mat-label>Email</mat-label>
+                    <input matInput type="email" [formControl]="email"  >
+                    <mat-error >
+                        <span *ngIf="email.errors && (email.touched || email.dirty)">
+                            <span *ngIf="email.errors.required">
+                                Email es requerido
+                            </span>
+                            <span *ngIf="email.errors.pattern">
+                                Email no tiene formato válido.
+                            </span>
+                        </span>
+                    </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/2 text-center">
+            <input  type="checkbox" class="inline mr-2 w-5 h-5 align-middle"  [formControl]="newsletter" checked ="false" >
+            <label for="recibirEmails" class="inline text-lg align-middle" >Deseo recibir emails de juguetes que me puedan interesar.</label>
+        </div>
+
+        <div class="text-center text-base sm:text-xl 2xl:text-2xl text-orange-electric ">Cambiar contraseña actual</div>
+
+        <div class="my-10 sm:w-1/2 mx-auto text-left">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label >Nueva contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"  [formControl]="newPassword" >
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>
+                    <div *ngIf="newPassword.errors && newPassword.touched" [ngClass]="'error'">
+                        <div *ngIf="newPassword.errors.minlength">
+                            Password mínimo de 6 caracteres.
+                        </div>
+                        <div *ngIf="newPassword.errors.maxlength">
+                            Password máximo 16 caracteres.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+
+
+        </div>
+
+        <div class="my-10 sm:w-1/2 mx-auto text-left">
+
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label >Repite nueva contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"  [formControl]="newPasswordRepeat" >
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>
+                    <div *ngIf="newPasswordRepeat.errors && newPasswordRepeat.touched" [ngClass]="'error'">
+                        <div *ngIf="newPasswordRepeat.errors.confirmPasswordValidator">
+                            Los password han de coincidir.
+                        </div>
+                        <div *ngIf="newPasswordRepeat.errors.minlength">
+                            Password mínimo de 6 caracteres.
+                        </div>
+                        <div *ngIf="newPasswordRepeat.errors.maxlength">
+                            Password máximo 16 caracteres.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="text-center py-4 sm:py-8">
+            <button type="submit" class="btn boton-misc-rojo "  [disabled]="perfilForm.invalid" >
+                Actualizar perfil
+            </button>
+        </div>
+    </form>
+</div>

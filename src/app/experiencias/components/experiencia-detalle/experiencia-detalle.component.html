@@ -1,0 +1,28 @@
+
+<div *ngIf="!loaded" class="w-screen h-screen">
+    <mat-spinner class="mx-auto top:32 sm:top-96"></mat-spinner>
+</div>
+
+
+<div *ngIf="loaded" class="contenedor-pagina-peq">
+
+<div class="titulo-pagina" >La experiencia fue así....</div>
+    <div *ngIf="experiencia">
+
+        <div class=""><a class="btn btn-outline-danger my-4 " routerLink="/experiencias/{{idExperiencia}}">Volver</a></div>
+        <div  class="flex flex-wrap space-between items-start mb-12">
+            <div class="w-full xl:w-1/2 h-1/2 pr-4">
+                <img *ngIf="experiencia.imagen_experiencia" [src]="trustedUrl" class="imagen-contenedor-item h-380 sm:h-600 xl:h-450" >
+                <img *ngIf="!experiencia.imagen_experiencia"  [src]=" experiencia.imagen_experiencia | mostrarImagenDefecto " class="imagen-contenedor-item imagen-vacia h-380 sm:h-600 xl:h-450" >
+            </div>    
+            <div class="w-full xl:w-1/2 p-4 h-1/2">
+                <div class="flex justify-between ">
+                    <div class="justify-self-start  sm:text-base text-red-dark mb-3">{{ experiencia.titulo }}</div>
+                    <div class="justify-self-end  text-xl 2xl:text-2xl pl-4 text-red-dark font-sans font-thin" >{{ experiencia.fecha_publicacion | formatDate :3 }}</div>
+                </div>  
+                <div class="text-left font-thin pt-2 sm:pt-3 text-xs sm:text-base">{{ experiencia.descripcion }}</div>
+            </div>
+        </div>
+    </div>     
+
+</div>

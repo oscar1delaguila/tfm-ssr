@@ -1,0 +1,35 @@
+
+
+<div *ngIf="!loaded" class="w-screen h-screen">
+    <mat-spinner class="mx-auto top:32 sm:top-96"></mat-spinner>
+</div>
+
+
+<div *ngIf="loaded" class="contenedor-pagina">
+
+    <div class="titulo-pagina" >Blog de experiencias de usuarios con compras verificadas.</div>
+    
+    <div *ngIf="experiencias" class="mx-auto" >
+
+        <div *ngFor="let experiencia of experiencias ; index as i; " class=" py-4 sm:py-6 2xl:py-16 "  > 
+            <div id="experiencias{{experiencia.id}}" class="contenedor-item">
+                
+                <div class="w-1/2 sm:w-1/3 h-64 xl:h-80">
+                    <a class="text-decoration-none "  [routerLink]="['/experiencias/detalle/', experiencia.id  ]" >
+                        <img *ngIf="experiencia.imagen_experiencia " [src]="trustedUrl[i]" class="imagen-contenedor-item" >
+                        <img *ngIf="!experiencia.imagen_experiencia " [src]="experiencia.imagen_experiencia | mostrarImagenDefecto " class="imagen-contenedor-item imagen-vacia" >
+                    </a>
+                </div>    
+                
+                <div class="w-1/2 sm:w-2/3 h-64 xl:h-80 px-3 p-3 ">
+                    <div class=" ">
+                        <div class="text-xs sm:text-base text-red-dark mb-3">{{ experiencia.titulo }}</div>
+                        <div class="text-left font-thin pt-2 sm:pt-3 text-xs sm:text-base text-naranja-oscuro" >Experiencia valorada con: {{ experiencia.valoracion }}</div>
+                    </div>  
+                    <div class="text-base sm:text-xl 2xl:text-2xl text-red-dark font-sans font-thin" >Publicado: {{ experiencia.fecha_publicacion | formatDate :3 }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 w-fit mx-auto" (click)="getListaExperienciasBlog()" ><a class="btn boton-cargar-mas" >Cargar más</a></div>
+    </div>
+</div>

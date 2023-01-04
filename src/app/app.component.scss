@@ -1,0 +1,127 @@
+
+
+
+a.nav-link {
+    /*color:#AC2508;*/
+    color:#AC2508;
+    font-weight: 100;
+}
+
+a.nav-link.active {
+    /* background-color: #AC2508; */
+    background-color: transparent;
+    border-radius: 0;
+    color: orangered ;
+}
+
+header {
+    text-align: center;
+    text-decoration: none;
+    min-height: fit-content;
+}
+
+footer {
+    min-height:20vh ;
+    max-height: fit-content;
+}
+
+.dropdown-menu {
+    background-color: #fff6e3 ;
+    color:#c34f3e;
+}
+
+.dropdown-item {
+    background-color: transparent ;
+    color: #c34f3e;
+}
+
+
+.dropdown-item:hover {
+    background-color: transparent ;
+    color: darkorange;
+}
+
+.dropdown-toggle::after {
+    margin-left: 0;
+}
+
+
+.fa-right-to-bracket {
+    color: #c34f3e;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+
+}
+
+
+
+
+
+#postFeedback {
+  display:none;
+/*  visibility: hidden;*/
+  width: fit-content;
+  text-align: center;
+  z-index: 99;
+  font-size: 14px;
+  padding: 5px 10px;
+  bottom:0px;
+  right:0px;
+  position: fixed;
+  border-top-left-radius: 5px;
+}
+
+
+.requestOk {
+  color: white;
+  background-color: green;
+}
+
+.requestKo {
+  color: white;
+  background-color: red;
+}
+
+
+.show {
+  /*visibility: visible;*/
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

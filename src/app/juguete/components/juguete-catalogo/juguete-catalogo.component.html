@@ -1,0 +1,159 @@
+
+
+<div *ngIf="!loaded" class="w-screen h-screen">
+    <mat-spinner class="mx-auto top:32 sm:top-96"></mat-spinner>
+</div>
+   
+
+
+<div *ngIf="loaded" class="contenedor-pagina">
+
+    <div class="titulo-pagina">Catálogo de juguetes</div>
+
+    <div class="flex flex-wrap w-full justify-between mx-auto sm:py-5 py-2  ">
+        <div class="w-full justify-self-end sm:w-1/3 text-red-dark h-fit sm:my-0 sm:py-0  sm:order-last">
+
+            <mat-form-field appearance="outline" class="w-full" >
+               <input matInput type="text" [formControl]="literalBusqueda" class="w-5/6 align-top" placeholder="Buscar juguete... ">
+               <mat-icon matSuffix>
+                    <svg (click)="buscarPorCampoBusqueda()" class="w-6 h-6 align-bottom hover:cursor-pointer " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/>
+                    </svg>
+                </mat-icon>
+            </mat-form-field>
+
+        </div>
+        <div class="w-full sm:w-2/3 justify-self-start align-middle pt-2 sm:order-first">
+            <app-categorias-tree (categoriaSelected)="buscarPorCategoria($event)"  class="text-orange-electric"></app-categorias-tree>
+            <!-- <app-categorias-tree  class="text-orange-electric"></app-categorias-tree> -->
+        </div> 
+    </div>
+
+    <div *ngIf="juguetes" class="flex flex-wrap justify-start space-between">
+        
+        <!-- items de izquierda a derecha -->
+        <div class="w-full 2xl:w-1/2 py-3 pl-4" *ngFor="let juguete of juguetes; index as i"  > 
+            
+            <div id="juguete{{juguete.id}}" class="contenedor-item ">
+                <div class="w-1/2  sm:w-1/3 h-64 ">
+                    <a class="text-decoration-none "  [routerLink]="['/juguetes/detalle/', juguete.id  ]" >
+                        <img *ngIf="juguete.imagen1" [src]="trustedUrl[i]" class="imagen-contenedor-item">
+                        <img *ngIf="!juguete.imagen1" [src]="juguete.imagen1 | mostrarImagenDefecto" class="imagen-contenedor-item imagen-vacia">
+                    </a>
+                </div>    
+                <div class="w-1/2 sm:w-2/3 h-64 pt-4 2xl:pt-8 2xl:pb-3 px-4" >
+
+                    <div class="mb-2 ">
+                        <div class="text-left text-xs sm:text-base text-red-dark mb-1">{{ juguete.titulo }}</div>
+                        <div class="text-left text-sm sm:text-lg 2xl:text-2xl text-red-dark font-sans font-thin" >{{ juguete.marca }} - {{juguete.material}} - {{juguete.edad}}+</div>
+                    </div>  
+
+                    <!-- puntuación menor que 2 -->
+                    <div *ngIf="(juguete.puntuacion <= 2) " class="contenedor-estrellas-valoracion">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star estrella-valoracion " viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-star estrella-valoracion " viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-star estrella-valoracion " viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <div class="mx-3 text-sm sm:text-base align-top inline"><i class=" text-naranja-oscuro">{{juguete.puntuacion}} - ({{juguete.num_votaciones }} Valoraciones)</i></div>                    </div>
+                    
+                    
+                    <!-- puntuación entre 2 y cuatro-->
+                    <div *ngIf="(juguete.puntuacion > 2) && (juguete.puntuacion <= 4) " class="contenedor-estrellas-valoracion">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <div class="mx-3 text-sm sm:text-base align-top inline"><i class=" text-naranja-oscuro">{{juguete.puntuacion}} - ({{juguete.num_votaciones }} Valoraciones)</i></div>                    </div>
+
+                    <!-- puntuación entre 4 y 6-->
+                    <div *ngIf="(juguete.puntuacion > 4) && (juguete.puntuacion <= 6) " class="contenedor-estrellas-valoracion">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg"   fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <div class="mx-3 text-sm sm:text-base align-top inline"><i class=" text-naranja-oscuro">{{juguete.puntuacion}} - ({{juguete.num_votaciones }} Valoraciones)</i></div>                    </div>
+
+                    <!-- puntuación entre 6 y 8-->
+                    <div *ngIf="(juguete.puntuacion > 6) && (juguete.puntuacion <= 8) " class="contenedor-estrellas-valoracion">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <div class="mx-3 text-sm sm:text-base align-top inline"><i class=" text-naranja-oscuro">{{juguete.puntuacion}} - ({{juguete.num_votaciones }} Valoraciones)</i></div>                    </div>
+        
+                    <!-- puntuación entre 8 y 10-->
+                    <div *ngIf="(juguete.puntuacion > 8) && (juguete.puntuacion <= 10) " class="contenedor-estrellas-valoracion">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill estrella-valoracion" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> 
+                        <div class="mx-3 text-sm sm:text-base align-top inline"><i class=" text-naranja-oscuro">{{juguete.puntuacion}}</i></div>
+                        <div class="text-sm sm:text-base align-top "><i class=" text-naranja-oscuro">({{juguete.num_votaciones }} Valoraciones)</i></div>
+                        
+                    </div>
+
+                    <div class=""><a class="btn boton-misc-rojo" href="https://amazon.es">Ir a Amazon </a></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-4 w-fit mx-auto" (click)="loadJuguetes()" ><a class="btn boton-cargar-mas" >Cargar más</a></div>
+    
+</div>

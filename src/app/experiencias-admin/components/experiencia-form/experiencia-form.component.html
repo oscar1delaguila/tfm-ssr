@@ -1,0 +1,132 @@
+
+
+
+
+<div class="contenedor-pagina-peq">
+
+  <div style="margin-left: auto; margin-right: auto">
+    <div id="postFeedback"></div>
+  </div>
+
+  <div class="mx-auto">
+
+      <div class="titulo-pagina">Explica tu experiencia con el juguete...</div> 
+      
+      <div class="my-5 text-left" >
+        <a class="btn boton-misc-rojo" routerLink="/experiencias-listado">Volver</a>
+      </div>
+
+      <form *ngIf="experienciaForm" enctype="multipart/form-data" [formGroup]="experienciaForm" (ngSubmit)="saveExperiencia()" >
+        
+          <div class="my-8 sm:w-full">
+            <mat-form-field appearance="outline" class="w-full" >
+              <mat-label >Selecciona el juguete que compraste:</mat-label>
+              <mat-select [formControl]="juguetesTitulos" >
+                <mat-option *ngFor="let jugueteComprado of juguetesCompradosLista" [value]="jugueteComprado.id">{{jugueteComprado.titulo}}</mat-option>                
+              </mat-select>
+              <mat-error>
+                <div *ngIf="juguetesTitulos.errors && juguetesTitulos.touched" [ngClass]="'error'">
+                  <div *ngIf="juguetesTitulos.errors.required">
+                      Título del juguete es obligatorio.
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+         
+  
+          <div class="my-10">
+            <mat-form-field appearance="outline" class="w-full" >
+              <mat-label>Título:</mat-label>
+              <input matInput type="text" [formControl]="titulo" />
+
+              <mat-error>
+                <div *ngIf="titulo.errors && titulo.touched" [ngClass]="'error'">
+                    <div *ngIf="titulo.errors.required">
+                        Título experiencia es obligatorio
+                    </div>
+                    <div *ngIf="titulo.errors.maxlength">
+                        Título experiencia solamente puede ser de 255 caracteres.
+                    </div>
+                </div>
+              </mat-error>
+            </mat-form-field>            
+          </div>
+
+          <div class="my-8 ">
+            <mat-form-field appearance="outline" class="w-1/2" >
+              <mat-label >Valora tu experiencias del 1 al 10:</mat-label>
+              <input matInput type="number" [formControl]="valoracion" />
+              <mat-error>
+                <div *ngIf="valoracion.errors && valoracion.touched" [ngClass]="'error'">
+                    <div *ngIf="valoracion.errors.required">
+                        La valoración es obligatoria.
+                    </div>
+                    <div *ngIf="valoracion.errors.max">
+                        La valoración no puede ser superior a 10.
+                    </div>
+                    <div *ngIf="valoracion.errors.min">
+                        La valoración no puede ser inferior a 0.
+                    </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+
+          <div class="my-10">
+            <mat-form-field appearance="outline" class="w-full" >
+              <mat-label>Descripción:</mat-label>
+
+              <textarea matInput
+                  [formControl]="descripcion"
+                  (keyup)="wordCounter()" 
+                  id="wmd-input" 
+                  data-post-type-id="2" 
+                  cols="92" 
+                  rows="10" 
+              >
+              </textarea>
+              <mat-error>
+                <div *ngIf="descripcion.errors && descripcion.touched" [ngClass]="'error'">
+                  <div *ngIf="descripcion.errors.required">
+                      La descripción es obligatoria
+                  </div>
+                  <div *ngIf="descripcion.errors.maxlength">
+                      La descripción no puede ser superior a 1000 caracteres.
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <div style="font-style: italic;">
+                {{ remainingChars }} Máximo de caracteres...
+            </div>
+
+          </div>
+
+
+          <div class="py-10">
+            <app-file-upload [fileName]="experiencia_imagen" (fileSelected)="imagenCargada($event)" ></app-file-upload>
+          </div>
+
+          <div *ngIf="isAdmin" class="justify-self-end mt-2 mb-5 text-lg mr-10">
+            <input type="checkbox" class="input-checkbox"  [formControl]="publicado" >
+            <label for="publicado" class="align-middle text-xs sm:text-xl " >Publicar</label>
+            <div *ngIf="descripcion.errors && descripcion.touched" [ngClass]="'error'">
+              <div *ngIf="descripcion.errors.required">
+                  Indica si vas a publicar o no la experiencia.
+              </div>
+            </div>  
+          </div>
+      
+
+          <div class="py-10">
+            <button type="submit" class="btn boton-misc-rojo" [disabled]="experienciaForm.invalid" >
+              Guardar Experiencia
+            </button>
+          </div>
+
+      </form>
+
+    </div>
+</div>

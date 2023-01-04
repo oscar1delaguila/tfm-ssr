@@ -1,0 +1,53 @@
+
+
+
+<div *ngIf="!loaded" class="w-screen h-screen">
+    <mat-spinner class="mx-auto top:32 sm:top-96"></mat-spinner>
+</div>
+
+
+<div *ngIf="loaded" class="contenedor-pagina-peq">
+
+    <div class="titulo-pagina" >Tus experiencias.</div>
+    
+    <div class="">
+        <button type="button" class="btn btn-success boton-crear" (click)="crearExperiencia()">Crear experiencia</button> 
+    </div>
+
+    <div *ngIf="experienciasUsuario">
+
+        <div *ngFor="let experiencia of experienciasUsuario ; index as i; " class=" py-2 sm:py-5" > 
+
+            <!-- contenedor item -->
+            <div  class="contenedor-item">
+                <div class="w-1/2 sm:w-1/3 h-64 xl:h-80">
+                    <img  *ngIf="experiencia.imagen_experiencia"  [src]="trustedUrl[i]" class="imagen-contenedor-item" >
+                    <img  *ngIf="!experiencia.imagen_experiencia" [src]="experiencia.imagen_experiencia | mostrarImagenDefecto "  class="imagen-contenedor-item imagen-vacia " >
+                </div>    
+                <div class="w-1/2 sm:w-2/3 p-3 h-64 xl:h-80">
+                    <div class="">
+                        <div class=" text-xs sm:text-base text-red-dark mb-3">{{ experiencia.titulo }}</div>
+                        <div class=" text-xs sm:text-base 2xl:text-xl text-red-dark font-sans font-thin" >Publicado: {{ experiencia.fecha_publicacion | formatDate :3 }}</div>
+                    </div>  
+                    <div class="text-left font-thin pt-2 sm:pt-3 text-xs sm:text-base text-naranja-oscuro">Puntuación: {{ experiencia.valoracion }}</div>
+                </div>
+            </div>
+
+            <div class="mx-auto flex justify-between">
+                <div *ngIf="experiencia" class="justify-self-start">
+                    <button type="button" class="btn btn-warning boton-editar mr-3" (click)="editar(experiencia.id)">Editar</button> 
+                    <button type="button" class="btn btn-danger boton-eliminar " (click)="eliminar(experiencia.id)">Eliminar</button>
+                </div>
+                <div class="justify-self-end mt-2 mb-5 text-lg mr-10" (click)="publicarExperiencia(experiencia.id, experiencia.publicado)">
+                    <input *ngIf="experiencia.publicado" id="checkboxExperienciaP{{experiencia.id}}" type="checkbox" class="input-checkbox" 
+                           checked
+                    >
+                    <input *ngIf="!experiencia.publicado" id="checkboxExperienciaNP{{experiencia.id}}" type="checkbox" class="input-checkbox" 
+                    >
+                    <label for="revisadoPublicado" class="align-middle text-xs sm:text-xl " >Publicado</label>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 w-fit mx-auto" (click)="getListaExperienciasUsuario()" ><a class="btn boton-cargar-mas" >Cargar más</a></div>
+    </div>
+</div>

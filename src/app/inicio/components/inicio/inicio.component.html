@@ -1,0 +1,234 @@
+
+
+   
+
+
+
+
+<!-- <div class="titulo-pagina">Comparte momentos especiales</div>  -->
+
+<div class="w-full sm:w-5/6 mx-auto mt-16 sm:mt-32 " >
+
+  <div class="w-full sm:w-5/6 absolute text-center top-1/4 text-2xl md:text-4xl 2xl:text-6xl text-white ">Gegantoys: los juguetes "más grandes"</div> 
+  <img src="../../../assets/img-inicio/instrument-gd68269668_640.jpg" class="w-full h-380  lg:h-600 2xl:h-800" alt="...">  
+    
+
+</div>  
+
+
+
+
+<!--
+
+<div class="titulo-pagina">Lo más destacado</div>
+
+-->
+
+<div class="contenedor-pagina">    
+
+<!--  
+      <div class= "flex flex-wrap justify-center w-5/6 mx-auto" >
+
+          <div class="tarjeta-inicio justify-self-start">
+              <a routerLink="/juguetes/">
+                <div class="card rounded-none">
+                  <div class="card-img-overlay text-xl 2xl:text-2xl text-orange-electric ">Casas de muñecas</div>
+                  <div class="card-img ">
+                    <img src="../../../assets/img-inicio/casa-munyecas.png" class="tarjeta-inicio-imagen">
+                  </div>
+                  
+                </div>
+              </a>
+          </div>    
+
+          <div class="tarjeta-inicio">
+              <a routerLink="/juguetes/">
+                <div class="card rounded-none">
+                  <div class="card-img">
+                    <img src="../../../assets/img-inicio/taller-mecanico.png" class="tarjeta-inicio-imagen">
+                  </div>
+                  <div class="card-img-overlay text-xl 2xl:text-2xl text-white">Banco de trabajo</div>
+                </div>
+              </a>
+          </div>    
+      </div>  
+
+      <div class= "flex flex-wrap justify-center w-5/6 mx-auto" >
+
+          <div class="tarjeta-inicio">
+              <a routerLink="/juguetes/">
+                <div class="card rounded-none">
+                  <div class="card-img">
+                    <img src="../../../assets/img-inicio/cocinas-cat.jpg" class="tarjeta-inicio-imagen">
+                  </div>
+                  <div class="card-img-overlay text-xl 2xl:text-2xl text-white">Cocinas</div>
+                </div>
+              </a>
+          </div>    
+
+          <div class="tarjeta-inicio " >
+              <a routerLink="/juguetes/">
+                <div class="card rounded-none">
+                  <div class="card-img">
+                    <img src="../../../assets/img-inicio/maletines.png" class="tarjeta-inicio-imagen">
+                  </div>
+                  <div class="card-img-overlay text-xl 2xl:text-2xl text-red-dark">Maletines de médicos</div>
+                </div>
+              </a>
+          </div>    
+
+          <div class="tarjeta-inicio">
+            <a routerLink="/juguetes/">
+              <div class="card rounded-none">
+                <div class="card-img">
+                  <img src="../../../assets/img-inicio/munyeco-cat.jpg" class="tarjeta-inicio-imagen">
+                </div>
+                <div class="card-img-overlay text-xl 2xl:text-2xl text-white">Muñecas</div>
+              </div>
+            </a>
+        </div>    
+    </div>    
+
+
+      <div class= "flex flex-wrap justify-center w-5/6 mx-auto" >
+
+        <div class="tarjeta-inicio justify-self-start">
+            <a routerLink="/juguetes/">
+              <div class="card rounded-none">
+                <div class="card-img-overlay text-xl 2xl:text-2xl text-orange-electric ">Casas de muñecas</div>
+                <div class="card-img ">
+                  <img src="../../../assets/img-inicio/casa-munyecas.png" class="tarjeta-inicio-imagen">
+                </div>
+                
+              </div>
+            </a>
+        </div>    
+
+        <div class="tarjeta-inicio">
+            <a routerLink="/juguetes/">
+              <div class="card rounded-none">
+                <div class="card-img">
+                  <img src="../../../assets/img-inicio/taller-mecanico.png" class="tarjeta-inicio-imagen">
+                </div>
+                <div class="card-img-overlay text-xl 2xl:text-2xl text-white">Banco de trabajo</div>
+              </div>
+            </a>
+        </div>    
+      </div>
+
+    -->
+
+      <!-- <div class=" my-9"><app-carousel-multi></app-carousel-multi></div> -->
+
+
+
+
+      <div id="faqs" class="titulo-pagina ">FAQS (Preguntas frecuentes).</div>
+      
+      <div class="mx-auto w-5/6">
+
+        <mat-accordion>
+          
+          <!--
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="text-2xl mx-auto text-orange-electric">FAQS (Preguntas frecuentes).</div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+          -->
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="text-base sm:text-2xl text-red-dark font-thin">Nuestros precios</div>
+              </mat-panel-title>
+              <!--
+              <mat-panel-description>
+                Currently I a {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+              -->
+            </mat-expansion-panel-header>
+            <div class="text-xs sm:text-base">Nuestros precios son los mejores.</div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class=" text-base sm:text-2xl text-red-dark font-thin">Garantías</div>
+              </mat-panel-title>
+              <!--
+              <mat-panel-description>
+                Currently I a {{panelOpenState ? 'open' : 'closed'}} 
+              </mat-panel-description>
+              -->
+            </mat-expansion-panel-header>
+            <div class="text-xs sm:text-base">Las mejores Garantías</div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="text-base sm:text-2xl text-red-dark font-thin">Valor añadido</div>
+              </mat-panel-title>
+              <!--
+              <mat-panel-description>
+                Currently I a {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+              -->
+            </mat-expansion-panel-header>
+            <div class=" text-xs  sm:text-base">Información adicional.</div>
+          </mat-expansion-panel>
+
+
+        </mat-accordion>
+      </div>        
+
+
+
+      <div id="contacto" class="titulo-pagina">Si tienes dudas pregúntanos...</div>
+
+      <form *ngIf="dudaForm" [formGroup]="dudaForm" (ngSubmit)="enviarDuda()" class="w-5/6 mx-auto pb-12">
+
+        <div class="my-4 ">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Email de usuario:</mat-label>
+              <input matInput type="email"  [formControl]="email" />
+              <mat-error>
+                <div *ngIf="email.errors && email.touched" [ngClass]="'error'">
+                    <div *ngIf="email.errors.required">
+                        El email de usuario es obligatorio.
+                    </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="my-4">
+            <mat-form-field appearance="outline" class="w-full" >
+              <mat-label>Escribe tu duda:</mat-label>
+              <textarea matInput 
+                  [formControl]="dudaTextArea"
+                  (keyup)="charCounter()" 
+                  id="wmd-input" 
+                  data-post-type-id="2" 
+                  cols="92" 
+                  rows="10" 
+              >
+              </textarea>
+              <mat-error>
+                <div *ngIf="dudaTextArea.errors && dudaTextArea.touched" [ngClass]="'error'">
+                  <div *ngIf="dudaTextArea.errors.required">
+                      El email de usuario es obligatorio.
+                  </div>
+              </div>
+              </mat-error>                
+            </mat-form-field>
+            <div style="font-style: italic;">
+                {{ remainingChars }} Máximo de caracteres...
+            </div>
+        </div>
+        <button type="submit" class="btn boton-misc-rojo" [disabled]="dudaForm.invalid" >Enviar duda</button>
+    </form>
+
+</div>

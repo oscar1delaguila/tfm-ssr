@@ -1,0 +1,411 @@
+
+
+
+<div class="contenedor-pagina-peq">
+  
+  <div id="postFeedback"></div>
+  
+  <div class="mx-auto">
+
+    <div class="titulo-pagina">Formulario Juguete</div>
+    
+    <div class="my-5 text-right">
+      <a class="btn boton-misc-rojo" routerLink="/juguetes-listado">Volver</a>
+    </div>
+
+
+    <form *ngIf="jugueteForm" enctype="multipart/form-data" [formGroup]="jugueteForm" (ngSubmit)="saveJuguete()">
+
+      <div class="my-8 ">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label>Título juguete:</mat-label>
+          <input matInput type="text" [formControl]="tituloJuguete" />
+          
+          <mat-error>
+            <div *ngIf="tituloJuguete.errors && tituloJuguete.touched" [ngClass]="'error'">
+                <div *ngIf="tituloJuguete.errors.required">
+                    Título juguete es obligatorio
+                </div>
+                <div *ngIf="tituloJuguete.errors.maxlength">
+                    El título del juguete máximo puede ser de 255 caracteres.
+                </div>
+            </div>
+          </mat-error>  
+        </mat-form-field>
+      </div>
+
+      <div class="my-8 sm:w-64">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label >Precio del juguete:</mat-label>
+          <input matInput type="number" [formControl]="precioJuguete" />
+          
+          <mat-error>
+            <div *ngIf="precioJuguete.errors && precioJuguete.touched" [ngClass]="'error'">
+                <div *ngIf="precioJuguete.errors.required">
+                    Precio juguete es obligatorio.
+                </div>
+                <div *ngIf="precioJuguete.errors.min">
+                    El precio del juguete no puede ser negativo.
+                </div>
+            </div>
+          </mat-error>    
+        </mat-form-field>    
+
+      </div>
+      
+      <div class="my-8 sm:w-1/3">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label >Marca:</mat-label>
+          <mat-select [formControl]="marcas"  >
+            <mat-option *ngFor="let marca of marcasLista" [value]="marca.nombre" >
+              {{marca.nombre}}
+            </mat-option>                
+          </mat-select>
+          <mat-error>
+            <div *ngIf="marcas.errors && marcas.touched" [ngClass]="'error'">
+              <div *ngIf="marcas.errors.required">
+                  La marca del juguete es obligatorio.
+              </div>
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="my-8 sm:w-1/3">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label >Material:</mat-label>
+          <mat-select [formControl]="materiales" >
+            <mat-option *ngFor="let material of materialesLista"  [value]="material.nombre" >
+              {{ material.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+          <div *ngIf="materiales.errors && materiales.touched" [ngClass]="'error'">
+            <div *ngIf="materiales.errors.required">
+                El material del juguete es obligatorio.
+            </div>
+          </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="my-8 sm:w-1/3">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label>Edad:</mat-label>
+          <mat-select [formControl]="edad">
+            <mat-option *ngFor="let edad of edadesLista; index as i"  [value]="edad" >
+              {{ edad }}+
+            </mat-option>
+          </mat-select>
+          <mat-error>
+          <div *ngIf="edad.errors && edad.touched" [ngClass]="'error'">
+            <div *ngIf="edad.errors.required">
+                El material del juguete es obligatorio.
+            </div>
+          </div>
+          </mat-error>
+        </mat-form-field>  
+      </div>
+
+
+
+      <p class="text-lg mt-10 ">Medidas:</p>
+      <div class="inline-block w-full flex flex-wrap order mb-10 p-2">
+        
+        <div class="pr-3 sm:w-1/8 sm:inline">
+          <mat-form-field appearance="outline" class="w-full" >
+            <mat-label >Ancho:</mat-label>
+            <input matInput type="text" [formControl]="ancho" />
+            <mat-error>
+              <div *ngIf="ancho.errors && ancho.touched" [ngClass]="'error'">
+                  <div *ngIf="ancho.errors.required">
+                      Ancho juguete es obligatorio
+                  </div>
+                  <div *ngIf="ancho.errors.maxlength">
+                      Ancho máximo de 4 dígitos.
+                  </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="pr-3 sm:w-1/8 sm:inline">
+          <mat-form-field appearance="outline" class="w-full" >
+            <mat-label>Largo:</mat-label>
+            <input matInput type="text" [formControl]="largo" />
+            <mat-error>
+              <div *ngIf="largo.errors && largo.touched" [ngClass]="'error'">
+                  <div *ngIf="largo.errors.required">
+                      Largo juguete es obligatorio
+                  </div>
+                  <div *ngIf="largo.errors.maxlength">
+                      Largo máximo de 4 dígitos.
+                  </div>
+              </div>
+            </mat-error>  
+          </mat-form-field>
+        </div>
+
+        <div class="sm:w-1/8 sm:inline">
+          <mat-form-field appearance="outline" class="w-full" >
+            <mat-label>Alto:</mat-label>
+            <input matInput type="text" [formControl]="alto" />
+            <mat-error>
+              <div *ngIf="alto.errors && alto.touched" [ngClass]="'error'">
+                  <div *ngIf="alto.errors.required">
+                      Ancho juguete es obligatorio
+                  </div>
+                  <div *ngIf="alto.errors.maxlength">
+                      Ancho 4 chars.
+                  </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      
+    </div>
+
+      
+      <div class="my-10">
+        <mat-form-field appearance="outline"  class="w-full">
+          <mat-label>Descripción:</mat-label>
+          <textarea matInput
+              [formControl]="descripcion"
+              (keyup)="charCounter()" 
+              id="wmd-input" 
+              data-post-type-id="2" 
+              cols="92" 
+              rows="10" 
+          >
+          </textarea>
+          <mat-error>
+            <div *ngIf="descripcion.errors && descripcion.touched" [ngClass]="'error'">
+              <div *ngIf="descripcion.errors.required">
+                  La descripción es obligatoria
+              </div>
+              <div *ngIf="descripcion.errors.maxlength">
+                  Máximo 1000 caracteres.
+              </div>
+            </div>
+          </mat-error>            
+        </mat-form-field>  
+        <div style="font-style: italic;">
+            {{ remainingChars }} Máximo de caracteres...
+        </div>
+      </div>
+
+      <h1 class="">Categoría del juguete:</h1> 
+      <div *ngIf="isUpdateMode && juguete"  class="flex flex-wrap border mb-10 w-full  ">
+        <div *ngIf="juguete.categoria" class="sm:my-10 my-4 w-fit">
+            {{ juguete.categoria.nombre_categoria }} - {{ juguete.categoria.subcategoria1 }} - {{ juguete.categoria.subcategoria2 }} 
+        </div>
+      </div>
+
+      <div *ngIf="!isUpdateMode"  class="flex flex-wrap border my-10 w-full  ">
+
+          <div class="sm:my-10 my-4 w-full sm:w-1/3 sm:inline sm:pr-3">
+            <mat-form-field appearance="outline"  class="w-full">
+              <mat-label>Categoria:</mat-label>
+              <mat-select [formControl]="categorias"    >
+                <mat-option *ngFor="let categoria of categoriasListaRenderizable"  [value]="categoria.categoria " (click)="obtenerSubcategorias1(categoria.categoria)" >
+                  {{ categoria.categoria }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <div *ngIf="categorias.errors && categorias.touched" [ngClass]="'error'">
+                  <div *ngIf="categorias.errors.required">
+                      Categoría es obligatorio.
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="sm:my-10 my-4 w-full sm:w-1/3 sm:inline sm:pr-3">
+            <mat-form-field appearance="outline" class="w-full" >
+              <mat-label>Subcategoria 1:</mat-label>
+              <mat-select [formControl]="subcategorias1"  >
+                <mat-option *ngFor="let subcategoria1 of subcategorias1ListaRenderizable "  [value]="subcategoria1.categoria" (click)="obtenerSubcategorias2(subcategoria1.categoria)" >
+                  {{ subcategoria1.categoria }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <div *ngIf="subcategorias1.errors && subcategorias1.touched" [ngClass]="'error'">
+                  <div *ngIf="subcategorias1.errors.required">
+                      Subcategoria1 es obligatorio.
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="sm:my-10 my-4 w-full sm:w-1/3 sm:inline ">
+            <mat-form-field appearance="outline" class="w-full" >
+              <mat-label for="subcategoria2" >Subcategoria 2:</mat-label>
+              <mat-select [formControl]="subcategorias2" >
+                <mat-option *ngFor="let subcategoria2 of subcategorias2ListaRenderizable"  [value]="subcategoria2.categoria" (click)="setValorSubCat2(subcategoria2.categoria)" >
+                  {{ subcategoria2.categoria }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <div *ngIf="subcategorias2.errors && subcategorias2.touched" [ngClass]="'error'">
+                  <div *ngIf="subcategorias2.errors.required">
+                      Subcategoria2 es obligatorio.
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+      </div>
+
+      <div class="my-8 sm:w-64">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label>Puntuación:</mat-label>
+          <input type="number" matInput  [formControl]="puntuacion" />
+    
+          <mat-error>
+          <div *ngIf="puntuacion.errors && puntuacion.touched" [ngClass]="'error'">
+              <div *ngIf="puntuacion.errors.required">
+                  Puntuación es obligatorio.
+              </div>
+              <div *ngIf="puntuacion.errors.min">
+                  Puntuación del juguete no puede ser negativo.
+              </div>
+          </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="my-8 sm:w-64">
+        <mat-form-field appearance="outline" class="w-full" >
+          <mat-label>Número de votaciones:</mat-label>
+          <input type="number" matInput [formControl]="num_votaciones" />
+          <mat-error>
+            <div *ngIf="num_votaciones.errors && num_votaciones.touched" [ngClass]="'error'">
+                <div *ngIf="num_votaciones.errors.required">
+                    Número de votaciones es obligatorio.
+                </div>
+                <div *ngIf="num_votaciones.errors.min">
+                    Número de votaciones no puede ser negativo.
+                </div>
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="flex flex-wrap">
+          <div class="sm:w-1/2 my-3">
+            <h1 class="">PROs del juguete</h1> 
+        
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="pro1" />
+              <label for="pro1" class="etiqueta-checkbox" >Es resistente al agua </label>
+            </div>
+
+            <div class="my-3 sm:my-8">
+              <input type="checkbox" class="input-checkbox" [formControl]="pro2" />
+              <label for="pro1" class="etiqueta-checkbox" >Desarrolla la psicomotricidad </label>
+            </div>
+
+            <div class=" my-3 sm:my-8">
+              <input type="checkbox" class="input-checkbox" [formControl]="pro3" />
+              <label for="pro1" class="etiqueta-checkbox" >Es de calidad </label>
+            </div>
+
+            <div class="my-3 sm:my-8">
+              <input type="checkbox" class="input-checkbox" [formControl]="pro4" />
+              <label for="pro1" class="etiqueta-checkbox" >Bonito a la vista </label>
+            </div>
+
+            <div class="my-3 sm:my-8">
+              <input type="checkbox" class="input-checkbox" [formControl]="pro5" />
+              <label for="pro1" class="etiqueta-checkbox" > Está bien construido </label>
+            </div>
+
+            <div class="my-3 sm:my-8">
+              <input type="checkbox" class="input-checkbox" [formControl]="pro6" />
+              <label for="pro1" class="etiqueta-checkbox" >Desarrolla la inteligencia de los niños</label>
+            </div>
+
+          </div>
+
+          <div class="sm:w-1/2 my-3">
+
+            <h1 class="">CONTRAs del juguete</h1> 
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="contra1" />
+              <label for="contra1" class="etiqueta-checkbox" >No es divertido para los niños </label>
+            </div>
+
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="contra2" />
+              <label for="contra2" class="etiqueta-checkbox" >No desarrolla la inteligencia</label>
+            </div>
+
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="contra3" />
+              <label for="contra3" class="etiqueta-checkbox" >No resiste el agua</label>
+            </div>
+
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="contra4" />
+              <label for="contra4" class="etiqueta-checkbox" >No son materiales de calidad</label>
+            </div>
+
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="contra5" />
+              <label for="contra5" class="etiqueta-checkbox" >Tiene muchas piezas y se pueden perder</label>
+            </div>
+
+            <div class="sm:my-8 my-3">
+              <input type="checkbox" class="input-checkbox" [formControl]="contra6" />
+              <label for="contra6" class="etiqueta-checkbox" >Es para niños grandes</label>
+            </div>
+          </div>    
+      </div>
+    
+
+    <p class="text-xl sm:text-2xl">Imágenes del juguete</p>
+
+    <div class="flex flex-wrap">
+        <div class="my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen1" (fileSelected)="imagenCargada($event,'1')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen2" (fileSelected)="imagenCargada($event,'2')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen3" (fileSelected)="imagenCargada($event,'3')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen4" (fileSelected)="imagenCargada($event,'4')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen5" (fileSelected)="imagenCargada($event,'5')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen6" (fileSelected)="imagenCargada($event,'6')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen7" (fileSelected)="imagenCargada($event,'7')"  ></app-file-upload>
+        </div>  
+        <div class="my-5 sm:my-10 sm:w-1/2" >
+          <app-file-upload  [fileName]="imagen8" (fileSelected)="imagenCargada($event,'8')"  ></app-file-upload>
+        </div>  
+    </div>
+
+    <div class="justify-self-end mt-2 mb-5 text-lg mr-10">
+      <input type="checkbox" class="input-checkbox"  [formControl]="publicado"  >
+      <label for="publicado" class="align-middle text-xs sm:text-xl " >Publicar</label>
+    </div>
+
+    
+    <button type="submit" class="btn boton-misc-rojo mb-12" [disabled]="jugueteForm.invalid" >
+        Guardar juguete 
+    </button>
+
+    </form>
+  </div>
+  

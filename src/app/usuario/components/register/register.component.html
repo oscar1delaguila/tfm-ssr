@@ -1,0 +1,143 @@
+
+<div class="contenedor-pagina-peq">
+
+    <div class="titulo-pagina">Alta usuario nuevo, bienvenido!!</div>
+
+    <form  [formGroup]="registerForm" (ngSubmit)="register()" class="text-center">
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/3">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label >Nombre:</mat-label>
+                <input matInput type="text" [formControl]="nombre" />
+                <mat-error>
+                    <div *ngIf="nombre.errors && nombre.touched" [ngClass]="'error'">
+                        <div *ngIf="nombre.errors.required">
+                            El nombre de pila es obligatorio.
+                        </div>
+                        <div *ngIf="nombre.errors.minlength">
+                            Password mínimo de 2 caracteres.
+                        </div>
+                        <div *ngIf="nombre.errors.maxlength">
+                            Password máximo 100 caracteres.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/3">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label >Apellidos:</mat-label>
+                <input matInput type="text" [formControl]="apellidos" />
+                <mat-error>
+                    <div *ngIf="apellidos.errors && apellidos.touched" [ngClass]="'error'">
+                        <div *ngIf="apellidos.errors.required">
+                            El campo Apellidos es obligatorio.
+                        </div>
+                        <div *ngIf="apellidos.errors.minlength">
+                            Apellidos mínimo de 2 caracteres.
+                        </div>
+                        <div *ngIf="apellidos.errors.maxlength">
+                            Apellidos máximo 100 caracteres.
+                        </div>
+
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/3">
+            <mat-form-field appearance="outline" class="w-full " >
+                <mat-label>Fecha nacimiento:</mat-label>
+                <input matInput type="date" [formControl]="fechaNacimiento" />
+                <mat-error>
+                    <div *ngIf="fechaNacimiento.errors && fechaNacimiento.touched" [ngClass]="'error'">
+                        <div *ngIf="fechaNacimiento.errors.required">
+                            La fecha de nacimiento es obligatorio.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/3">
+            <mat-form-field appearance="outline" class="w-full ">
+                <mat-label>Email</mat-label>
+                    <input matInput type="email" [formControl]="email"  >
+                    <mat-error >
+                        <span *ngIf="email.errors && (email.touched || email.dirty)">
+                            <span *ngIf="email.errors.required">
+                                Email es requerido
+                            </span>
+                            <span *ngIf="email.errors.pattern">
+                                Email no tiene formato válido.
+                            </span>
+                        </span>
+                    </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/3">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"  [formControl]="password" >
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>
+                <span *ngIf="password.errors && (password.touched || password.dirty)">
+                    <span *ngIf="password.errors.required">
+                        Password es requerido
+                    </span>
+                    <span *ngIf="password.errors.minlength">
+                        Password mínimo de 6 caracteres.
+                    </span>
+                    <span *ngIf="password.errors.maxlength">
+                        Password máximo de 16 caracteres.
+                    </span>
+                </span>
+                </mat-error>
+            </mat-form-field>   
+        </div>
+        
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/3">
+            <mat-form-field appearance="outline" class="w-full" >
+                <mat-label>Repite contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"  [formControl]="passwordRepetido" >
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>
+                    <div *ngIf="passwordRepetido.errors && passwordRepetido.touched" [ngClass]="'error'">
+                        <div *ngIf="passwordRepetido.errors.required">
+                            El password de usuario es obligatorio.
+                        </div>
+                        <div *ngIf="passwordRepetido.errors.minlength">
+                            Password mínimo de 6 caracteres.
+                        </div>
+                        <div *ngIf="passwordRepetido.errors.maxlength">
+                            Password máximo 16 caracteres.
+                        </div>
+                        <div *ngIf="passwordRepetido.errors.confirmPasswordValidator">
+                            Los password han de coincidir.
+                        </div>
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="my-10 text-left mx-auto sm:w-2/3 2xl:w-1/2 ">
+            <input type="checkbox" class="inline mr-2 w-5 h-5 align-middle"  [formControl]="newsletter" checked ="false" >
+            <label for="recibirEmails" class="inline text-lg align-middle" >Deseo recibir emails de juguetes que me puedan interesar.</label>
+        </div>
+
+        <button type="submit" class="btn boton-misc-rojo mr-8 mb-12"  [disabled]="registerForm.invalid" >
+            Alta Usuario  
+        </button>
+        <button routerLink="/login" class="btn boton-misc-rojo mb-12"  >Volver</button>
+        
+
+    </form>
+</div>

@@ -1,0 +1,43 @@
+
+
+
+
+<div class=" align-middle pr-3">
+    <div class="flex justify-between w-full">
+        <div class="w-fit justify-selft-start  ">
+            <nav class="text-red-dark" aria-label="breadcrumb"  style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' %3E%3Cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z' fill='coral '/%3E%3C/svg%3E&#34;);">
+                <ol id="breadCrumbCategorias" class="breadcrumb flex items-center  ">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-right-fill m-1 flex-initial  w-4 h-4 sm:w-4 sm:h-4" viewBox="0 0 16 16">
+                        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                    </svg>
+                    <li *ngFor=" let itemBreadCrumb of breadCrumbs" class="breadcrumb-item flex-initial w-fit sm:w-fit sm:text-xl text-base" (click)="loadCategoriasFromBreadCrumbs(itemBreadCrumb);">
+                        <span class="text-red-dark hover:cursor-pointer ">
+                            <a class="hover:cursor-pointer font-thin">{{ itemBreadCrumb }}</a>
+                        </span>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="w-fit justify-selft-end text-red-dark">
+            <div *ngIf="!showItems" class="hover:cursor-pointer text-right" >
+                  <svg xmlns="http://www.w3.org/2000/svg" (click)="showCategorias()" fill="currentColor" class="bi bi-arrow-down-circle-fill  w-6 h-6 sm:w-8 sm:h-8 text-right" viewBox="0 0 16 16"  >
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                  </svg>
+            </div>
+        
+            <div *ngIf="showItems" class="text-end hover:cursor-pointer text-red-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" (click)="hideCategorias()" fill="currentColor" class="bi bi-arrow-up-circle-fill w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 16 16" >
+                    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                </svg>
+            </div>
+        </div>
+
+    </div>    
+
+    <div *ngIf="showItems && loaded" class=" flex flex-wrap w-full mx-auto ">
+        <div class="justify-start hover:cursor-pointer sm:w-32 w-28 pl-5 py-4 "  *ngFor=" let categoriaRenderizable of categoriasRenderizables; index as indiceDeCategoriasRenderizables " (click)="loadCategoriasFromPanel(categoriaRenderizable.categoria );"   >
+            <img  class=" w-28 h-28 sm:w-32 sm:h-32 mb-2"  src = "{{server}}{{categoriaRenderizable.imagen_representativa}} " > 
+            <div class="mx-auto text-center  text-small sm:text-base text-red-dark font-thin">{{ categoriaRenderizable.categoria}}</div>
+        </div>
+    </div>
+</div>

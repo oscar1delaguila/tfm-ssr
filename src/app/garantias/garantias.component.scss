@@ -1,0 +1,35 @@
+
+/*
+.tooltip-one {
+    margin: 0 auto;
+}
+
+*/
+/* tooltip sin triangulito */
+  
+  /* EMPIEZA AQUÍ */
+  
+  .tooltip-one {
+    padding: 18px 14px;
+    background-color: #fff6e3;
+    color: #FF5733;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    filter: drop-shadow(0 3px 5px #ccc);
+    line-height: 1.5;
+  }
+  
+  .tooltip-one:after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    margin-left: -9px;
+    width: 18px;
+    height: 18px;
+    background-color: #fff6e3;
+    transform: rotate(45deg);
+  }
+  
+  
