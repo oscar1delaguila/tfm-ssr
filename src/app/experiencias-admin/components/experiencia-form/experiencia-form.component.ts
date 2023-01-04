@@ -129,7 +129,7 @@ export class ExperienciaFormComponent implements OnInit {
 
       });
 
-      this.loadTitulosJuguetesComprados();
+      
       
   }
 
@@ -138,7 +138,7 @@ export class ExperienciaFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.loadTitulosJuguetesComprados();
     if (this.isUpdateMode) {
       this.store.dispatch(experienciasActions.getExperienciaByIdAdmin({idExperiencia:this.experienciaId}));
     }

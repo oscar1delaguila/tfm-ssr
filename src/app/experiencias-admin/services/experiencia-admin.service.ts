@@ -40,7 +40,7 @@ export class ExperienciaAdminService {
   }
 
   getAllTitulosJuguetes():Observable<JugueteTituloId[]> {
-    return this.http.get<JugueteTituloId[]>( this.base +'/juguetes/titulos/');
+    return this.http.get<JugueteTituloId[]>( this.base +'/experiencias/titulos-juguetes/');
   }
 
 
