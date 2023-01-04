@@ -15,7 +15,7 @@
 
             <div mat-card-sm-image class=" border-solid border rounded border-silver my-3">
 
-                <a class="text-decoration-none "  [routerLink]="['/juguete/', favorito.juguete_id  ]" >
+                <a class="text-decoration-none "  [routerLink]="['/juguetes/detalle/', favorito.juguete_id  ]" >
                     <img *ngIf="favorito.imagen_favorito" [src]="trustedUrl[i]" class="w-full h-32 sm:h-48 2xl:h-80 object-fit" >
                     <img  *ngIf="!favorito.imagen_favorito" [src]="favorito.imagen_favorito | mostrarImagenDefecto " class="w-full h-32 sm:h-48 2xl:h-80 object-fit imagen-vacia" >
                 </a>
