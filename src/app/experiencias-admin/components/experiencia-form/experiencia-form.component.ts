@@ -70,7 +70,7 @@ export class ExperienciaFormComponent implements OnInit {
 
     
     this.titulo = new FormControl('', [ Validators.required, Validators.maxLength(255) ]);
-    this.descripcion = new FormControl ('', [ Validators.required, Validators.maxLength(1000) ]);
+    this.descripcion = new FormControl ('', [ Validators.required, Validators.maxLength(3500) ]);
     this.publicado = new FormControl( false , [ Validators.required ] );
     this.juguetesTitulos = new FormControl('', [Validators.required]);
     this.valoracion = new FormControl(0,[ Validators.required, Validators.max(10), Validators.min(0) ]);
@@ -198,7 +198,7 @@ export class ExperienciaFormComponent implements OnInit {
 
 
   wordCounter() {
-    this.remainingChars = this.descripcion.value ? 1000 - this.descripcion.value.length : 1000;
+    this.remainingChars = this.descripcion.value ? 3000 - this.descripcion.value.length : 3000;
   }
 /*
   jugueteSeleccionado() {

@@ -114,7 +114,7 @@ export class JugueteFormComponent implements OnInit {
 
       this.tituloJuguete = new FormControl('juguete1', [ Validators.required, Validators.maxLength(255) ]);
       this.precioJuguete = new FormControl(55.0, [ Validators.required, Validators.min(0) ] );
-      this.descripcion = new FormControl ('description del juguete', [ Validators.required, Validators.maxLength(1000) ]);
+      this.descripcion = new FormControl ('description del juguete', [ Validators.required, Validators.maxLength(3500) ]);
       
       this.pro1 = new FormControl(false );
       this.pro2 = new FormControl(false );
@@ -482,7 +482,7 @@ export class JugueteFormComponent implements OnInit {
 
 
   charCounter():void {
-    this.remainingChars = this.descripcion.value ? 1000 - this.descripcion.value.length : 1000;
+    this.remainingChars = this.descripcion.value ? 3000 - this.descripcion.value.length : 3000;
   }
 
   
